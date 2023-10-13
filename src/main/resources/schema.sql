@@ -1,0 +1,22 @@
+CREATE DATABASE calendar_scheduler;
+
+CREATE TABLE user_event_mapping (
+    id MEDIUMINT NOT NULL AUTO_INCREMENT,
+    userId CHAR(100) NOT NULL,
+    eventId CHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE event (
+    id MEDIUMINT NOT NULL AUTO_INCREMENT,
+    name CHAR(30) NOT NULL,
+    startTime TIMESTAMP NOT NULL,
+    endTime TIMESTAMP NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE users (
+    id MEDIUMINT NOT NULL AUTO_INCREMENT,
+    name CHAR(30) NOT NULL,
+    PRIMARY KEY (id)
+);
