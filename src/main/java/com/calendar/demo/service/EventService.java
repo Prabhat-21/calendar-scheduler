@@ -7,9 +7,11 @@ import com.calendar.demo.response.EventResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ValidationException;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -24,6 +26,19 @@ public class EventService {
     static Long MILLIS_15_MINUTES = 15 * 60 * 1000L;
 
     public Long createEvent(EventRequest eventRequest) {
+
+        Timestamp start = eventRequest.getStartTime();
+        Timestamp end = eventRequest.getEndTime();
+        if (end.getTime() - start.getTime() < MILLIS_15_MINUTES) {
+            throw new ValidationException("slot is under 15 mins");
+        }
+        if (start.getTime() % MILLIS_15_MINUTES != 0) {
+            throw new ValidationException("start time is wrongly chosen");
+        }
+        if (end.getTime() % MILLIS_15_MINUTES != 0) {
+            throw new ValidationException("end time is wrongly chosen");
+        }
+
         return eventDao.createEvent(eventRequest);
     }
 

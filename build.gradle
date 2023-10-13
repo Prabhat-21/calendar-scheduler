@@ -11,11 +11,14 @@ java {
 	sourceCompatibility = '17'
 }
 
-configurations {
-	configureEach {
-		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-		exclude group: 'org.hibernate.validator', module: 'hibernate-validator'
-	}
+configurations.all {
+
+	exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	exclude group: 'org.hibernate.validator', module: 'hibernate-validator'
+
+//	resolutionStrategy {
+//		force 'org.springframework:spring-webmvc:5.0.9.RELEASE'
+//	}
 }
 
 repositories {
@@ -28,6 +31,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//	implementation 'org.springframework:spring-webmvc:5.0.9.RELEASE'
+
+	implementation 'com.google.guava:guava:23.0'
 
 	implementation 'mysql:mysql-connector-java:8.0.21'
 	implementation group: 'org.jdbi', name: 'jdbi3-core', version: '3.36.0'
