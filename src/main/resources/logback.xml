@@ -1,0 +1,12 @@
+<configuration>
+
+    <appender name="CONSOLE_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d [%thread] [%X{X-Transaction-Id} - %X{X-Request-Id} - %X{X-User-Id}] %-5level %c{15} - %msg%n%rEx</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="CONSOLE_APPENDER" />
+    </root>
+</configuration>
